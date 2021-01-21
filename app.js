@@ -36,7 +36,7 @@ UI.prototype.showAlert = function (message, className) {
 
     setTimeout(function () {
         document.querySelector(".alert").remove();
-    }, 2000);
+    }, 1000);
 };
 
 UI.prototype.deleteBook = function (target) {
@@ -68,13 +68,13 @@ document.getElementById("book-form").addEventListener("submit", function (e) {
     } else {
         // Add book to list
         ui.addBookToList(book);
+
+        ui.showAlert("Book added!", "success");
+
         // Clear fields
         ui.clearFields();
-
-        ui.showAlert("Book added to the list", "success");
-
-        e.preventDefault();
     }
+    e.preventDefault();
 });
 
 document.querySelector("#book-list").addEventListener("click", function (e) {
@@ -82,7 +82,7 @@ document.querySelector("#book-list").addEventListener("click", function (e) {
 
     ui.deleteBook(e.target);
 
-    ui.showAlert("Book deleted from the list", "success");
+    ui.showAlert("Book removed!", "success");
 
     e.preventDefault();
 });
