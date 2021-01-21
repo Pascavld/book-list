@@ -27,10 +27,12 @@
     </head>
     <body>
         <div class="container">
-            <h1>Add Book</h1>
+            <div id="heading">
+                <h1>Add Book</h1>
+            </div>
             <form id="book-form">
                 <div>
-                    <label for="title">Title</label>
+                    <label for="title" id="book-title">Book Title</label>
                     <input type="text" id="title" class="u-full-width" />
                 </div>
                 <div>
@@ -42,7 +44,12 @@
                     <input type="text" id="ISBN" class="u-full-width" />
                 </div>
                 <div>
-                    <input type="submit" value="submit" class="u-full-width" />
+                    <input
+                        type="submit"
+                        value="submit"
+                        class="u-full-width"
+                        id="submit-btn"
+                    />
                 </div>
             </form>
             <table class="u-full-width">
