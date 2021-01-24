@@ -15,36 +15,32 @@ class UI {
     // Add book to list function
     addBookToList(book) {
         // Get the book list
-        const list = document.getElementById("book-list");
+        const bookList = document.querySelector("#book-list");
         // Create tr element
         const row = document.createElement("tr");
         // Insert cols in the innerHTML. create more tds
         row.innerHTML = `
-    <td>${book.title}</td>
-    <td>${book.author}</td>
-    <td>${book.isbn}</td>
-    <td><a href = "#" class = "delete">X</a></td>
-    `;
+        <td>${book.title}</td>
+        <td>${book.author}</td>
+        <td>${book.isbn}</td>
+        <td><a href="#" class="delete">X</a></td>
+        `;
         //make a for list that makes the id 1, 2, etc
-        list.appendChild(row);
+        bookList.appendChild(row);
     }
 
     //show alert function
     showAlert(message, className) {
         //create div
-        const div = document.createElement("div");
+        const alertDiv = document.createElement("div");
         //get the heading
-        const heading = document.querySelector("#heading");
-
+        const heading = document.getElementById("heading");
         //add the classes
-        div.className = `alert ${className}`;
-
+        alertDiv.className = `alert ${className}`;
         //append the message
-        div.appendChild(document.createTextNode(message));
-
+        alertDiv.appendChild(document.createTextNode(message));
         // add the div after
-        heading.after(div);
-
+        heading.after(alertDiv);
         //set the timeout
         setTimeout(function () {
             document.querySelector(".alert").remove();
@@ -90,7 +86,6 @@ class Store {
         books.forEach(function (book) {
             const ui = new UI();
 
-            // Add book to UI
             ui.addBookToList(book);
         });
     }
@@ -131,13 +126,16 @@ document.getElementById("book-form").addEventListener("submit", function (e) {
     const title = document.getElementById("title").value;
     const author = document.getElementById("author").value;
     const isbn = document.getElementById("ISBN").value;
-    // validation, the alert that goes when I don't fill the form
+
     // Instantiate a book
     const book = new Book(title, author, isbn);
+
     // Instantiate UI
     const ui = new UI();
+
+    // validation, the alert that goes when I don't fill the form
     if (title === "" || author === "" || isbn === "") {
-        ui.showAlert("Please fill in all fields", "error");
+        ui.showAlert("Please fill in all fields!", "error");
     } else {
         // Add book to list
         ui.addBookToList(book);
@@ -147,7 +145,6 @@ document.getElementById("book-form").addEventListener("submit", function (e) {
 
         //show alert
         ui.showAlert("Book added!", "success");
-
         // Clear fields
         ui.clearFields();
     }
@@ -157,13 +154,11 @@ document.getElementById("book-form").addEventListener("submit", function (e) {
 });
 
 //add event listener for the book list
-document.querySelector("#book-list").addEventListener("click", function (e) {
+document.getElementById("book-list").addEventListener("click", function (e) {
     const ui = new UI();
 
     //delete book on the target
     ui.deleteBook(e.target);
-
-    // Remove from Local Storage
 
     //remove from local storage, careful at the argument, get the isbn based on the target
     Store.removeBookFromLocalStorage(
@@ -173,5 +168,6 @@ document.querySelector("#book-list").addEventListener("click", function (e) {
     //show alert
     ui.showAlert("Book removed!", "success");
 
+    //prevent default
     e.preventDefault();
 });
