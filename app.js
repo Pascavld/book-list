@@ -1,6 +1,4 @@
-//add a button that removes all books from the list and local storage
-//add the local storage feature to the es5 version too
-
+//add dark mode to the app, and add a filter feature the same as on the todo list website
 // Create Book class
 class Book {
     constructor(title, author, isbn) {
@@ -25,7 +23,6 @@ class UI {
         <td>${book.isbn}</td>
         <td><a href="#" class="delete">X</a></td>
         `;
-        //make a for list that makes the id 1, 2, etc
         bookList.appendChild(row);
     }
 
@@ -52,6 +49,10 @@ class UI {
         if (target.classList.contains("delete")) {
             target.parentElement.parentElement.remove();
         }
+    }
+
+    removeAllBooks() {
+        document.getElementById("book-list").innerHTML = "";
     }
 
     // create clear Fields function
@@ -115,6 +116,10 @@ class Store {
         //set item to local storage
         localStorage.setItem("books", JSON.stringify(books));
     }
+
+    static removeAllBooksFromLocalStorage() {
+        localStorage.clear();
+    }
 }
 
 // DOM Load Event (event when the page loads)
@@ -169,5 +174,21 @@ document.getElementById("book-list").addEventListener("click", function (e) {
     ui.showAlert("Book removed!", "success");
 
     //prevent default
+    e.preventDefault();
+});
+
+document.getElementById("clear-btn").addEventListener("click", function (e) {
+    const bookList = document.getElementById("book-list");
+
+    if (bookList === "undefined") {
+        document.getElementById("clear-btn").disabled = true;
+    } else {
+        const ui = new UI();
+
+        ui.removeAllBooks();
+
+        Store.removeAllBooksFromLocalStorage();
+    }
+
     e.preventDefault();
 });

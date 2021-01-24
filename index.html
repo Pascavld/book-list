@@ -22,6 +22,10 @@
             .error {
                 background-color: red;
             }
+
+            .button {
+                float: right;
+            }
         </style>
         <title>Book List</title>
     </head>
@@ -63,6 +67,14 @@
                 </thead>
                 <tbody id="book-list"></tbody>
             </table>
+            <div class="clear-tasks">
+                <input
+                    type="button"
+                    value="Clear all books"
+                    class="button"
+                    id="clear-btn"
+                />
+            </div>
         </div>
         <script src="app.js"></script>
     </body>
