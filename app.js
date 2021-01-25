@@ -1,4 +1,3 @@
-//add dark mode to the app, and add a filter feature the same as on the todo list website
 // Create Book class
 class Book {
     constructor(title, author, isbn) {
@@ -8,7 +7,7 @@ class Book {
     }
 }
 
-// Crate UI class
+// Create UI class
 class UI {
     // Add book to list function
     addBookToList(book) {
@@ -192,3 +191,11 @@ document.getElementById("clear-btn").addEventListener("click", function (e) {
 
     e.preventDefault();
 });
+
+// dark mode start
+
+document.getElementById("checkbox").addEventListener("change", function () {
+    document.body.classList.toggle("dark");
+});
+
+// dark mode end

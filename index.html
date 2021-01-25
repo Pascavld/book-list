@@ -8,6 +8,80 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"
         />
         <style>
+            /* dark mode start */
+            body.dark {
+                background-color: #292c35 !important;
+            }
+            /* optional */
+            body.dark h1 {
+                color: #fff !important;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            body.dark th {
+                color: #fff !important;
+            }
+
+            body.dark td {
+                color: #fff !important;
+            }
+
+            body.dark a {
+                color: #fff !important;
+            }
+
+            body.dark input {
+                color: #fff !important;
+            }
+
+            body.dark label {
+                color: #fff !important;
+            }
+
+            body.dark ::placeholder {
+                color: #fff !important;
+            }
+
+            /* end optional */
+            body.dark input {
+                background-color: #292c35 !important;
+            }
+
+            .checkbox {
+                display: none !important;
+            }
+
+            .label {
+                background-color: #111;
+                float: right;
+                align-items: center;
+                justify-content: space-between;
+                padding: 5px;
+                position: relative;
+                border-radius: 50px;
+                display: flex;
+                height: 17px;
+                width: 41px;
+            }
+
+            .switch {
+                background-color: white;
+                position: absolute;
+                top: 2px;
+                left: 2px;
+                border-radius: 50%;
+                width: 22px;
+                height: 22px;
+                transition: transform 0.2s linear;
+            }
+
+            .checkbox:checked + .label .switch {
+                transform: translateX(24px);
+            }
+            /* dark mode end */
             .success,
             .error {
                 color: white;
@@ -34,6 +108,16 @@
             <div id="heading">
                 <h1>Add Book</h1>
             </div>
+            <!-- dark mode start -->
+            <div>
+                <input type="checkbox" id="checkbox" class="checkbox" />
+                <label for="checkbox" class="label">
+                    <i class="fa fa-moon"></i>
+                    <i class="fa fa-sun"></i>
+                    <div class="switch"></div>
+                </label>
+            </div>
+            <!-- dark mode end -->
             <form id="book-form">
                 <div>
                     <label for="title" id="book-title">Book Title</label>
